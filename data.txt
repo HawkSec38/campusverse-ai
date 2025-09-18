@@ -1,0 +1,121 @@
+TryHackMe
+
+Dashboard
+
+Learn
+Go Premium
+
+Hey goodluck Oyebisi!
+
+I read the room. You're about to do something epic.
+
+Join our community
+Join the Discord server
+My Learning
+Pre Security
+31%
+image
+What is Networking?
+
+Begin learning the fundamentals of computer networking in this bite-sized and interactive module.
+image
+Intro to LAN
+
+Learn about some of the technologies and designs that power private networks
+image
+OSI Model
+
+Learn about the fundamental networking framework that determines the various stages in which data is handled across a network
+image
+Packets & Frames
+
+Understand how data is divided into smaller pieces and transmitted across a network to another device
+image
+Extending Your Network
+
+Learn about some of the technologies used to extend networks out onto the Internet and the motivations for this.
+View path
+Resume learning
+New Rooms
+Detecting Web DDoS
+Detecting Web DDoS
+
+easy
+Linux Logging for SOC
+Linux Logging for SOC
+
+easy
+Chaining Vulnerabilities
+Chaining Vulnerabilities
+
+easy
+AppSec IR
+AppSec IR
+
+medium
+Tabletop Exercises
+
+Run a TTX exercise to simulate an attack from breach to recovery and assess how your team makes critical decisions under pressure.
+Simulate Attack
+Access Networks with your streak
+
+Did you know that you can access networks as a reward for keeping a streak?
+Unlock Networks
+Networks
+gold League
+View league
+
+3 days
+
+Top 10 advance to the next league
+You are ranked #20
+
+Complete more rooms to advance!
+13 Questions
+
+Answered this week.
+Your Stats
+Go to profile
+User avatar
+
+goodluckoyebisi5
+
+[ADEPT]
+
+Level 7
+
+[0x7]
+
+19
+
+265669
+
+3258
+
+35
+
+7
+Skills Matrix
+
+entry Foundational
+View matrix
+Suggested Follows
+User avatar
+DustyMedusa666
+User avatar
+cybflawless
+User avatar
+theCyberWolf
+
+    User avatar
+
+    CYB3RLEO
+
+776
+
+2
+
+    14
+
+Copyright TryHackMe 2018-2025
+
