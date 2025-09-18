@@ -1,7 +1,5 @@
 langchain
 langchain-deepseek
-openai
-langchain-community
-langchain-openai
+langchain-communit
 chromadb
 langchain-huggingface
