@@ -1,0 +1,7 @@
+langchain
+langchain-deepseek
+openai
+langchain-community
+langchain-openai
+chromadb
+langchain-huggingface
