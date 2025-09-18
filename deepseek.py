@@ -23,3 +23,4 @@ index = VectorstoreIndexCreator(vectorstore_cls=Chroma, embedding=embedding).fro
 qa = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=index.vectorstore.as_retriever())
 
 print(qa.invoke({"query": query}))
+#to run the code : python deepseek.py " prompt"
