@@ -1,5 +1,6 @@
+bytez
 langchain
-langchain-deepseek
-langchain-communit
-chromadb
-langchain-huggingface
+langchain-openai
+langchain-community
+openai
+faiss-cpu

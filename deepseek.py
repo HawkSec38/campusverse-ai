@@ -1,26 +1,36 @@
 import os
 import sys
-import getpass
+
+from langchain_community.document_loaders import TextLoader
 from langchain_community.document_loaders import DirectoryLoader
-from langchain.indexes import VectorstoreIndexCreator
-from langchain_huggingface import HuggingFaceEmbeddings
-from langchain.chat_models import init_chat_model
+from langchain_openai import OpenAI
 from langchain.chains import RetrievalQA
-from langchain_community.vectorstores import Chroma
+from langchain_community.vectorstores import FAISS
+from langchain_openai import OpenAIEmbeddings
+from bytez import Bytez
 
-if not os.environ.get("DEEPSEEK_API_KEY"):
-    os.environ["DEEPSEEK_API_KEY"] = getpass.getpass("Enter API key for DeepSeek: ")
+# Initialize Bytez SDK
+sdk = Bytez("ab84ea95bed7cae9a5ed19420b69e47f")
 
-llm = init_chat_model("deepseek-chat", model_provider="deepseek")
+# os.environ["OPENAI_API_KEY"] = "your_openai_api_key_here"  # Replace if needed
 
-query = sys.argv[1]
+query = sys.argv[1] if len(sys.argv) > 1 else "default query"
 
-loader = DirectoryLoader(".", glob="*.txt")
-embedding = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
+# Load documents
+loader = DirectoryLoader('./data', glob="**/*.txt", loader_cls=TextLoader)
+documents = loader.load()
 
-index = VectorstoreIndexCreator(vectorstore_cls=Chroma, embedding=embedding).from_loaders([loader])
+# Create embeddings and vectorstore
+embeddings = OpenAIEmbeddings()
+vectorstore = FAISS.from_documents(documents, embeddings)
 
-qa = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=index.vectorstore.as_retriever())
+# Create RetrievalQA chain
+qa_chain = RetrievalQA.from_chain_type(
+    llm=OpenAI(),
+    chain_type="stuff",
+    retriever=vectorstore.as_retriever()
+)
 
-print(qa.invoke({"query": query}))
-#to run the code : python deepseek.py " prompt"
+# Query the index
+result = qa_chain.run(query)
+print(result)
