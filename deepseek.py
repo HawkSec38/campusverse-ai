@@ -1,36 +1,29 @@
-import os
 import sys
 
 from langchain_community.document_loaders import TextLoader
 from langchain_community.document_loaders import DirectoryLoader
-from langchain_openai import OpenAI
-from langchain.chains import RetrievalQA
-from langchain_community.vectorstores import FAISS
-from langchain_openai import OpenAIEmbeddings
 from bytez import Bytez
 
-# Initialize Bytez SDK
+# Initialize Bytez SDK with your key
 sdk = Bytez("ab84ea95bed7cae9a5ed19420b69e47f")
 
-# os.environ["OPENAI_API_KEY"] = "your_openai_api_key_here"  # Replace if needed
+# Load the model via Bytez (using a free OpenAI model)
+model = sdk.model("openai/gpt-4o-mini")
 
 query = sys.argv[1] if len(sys.argv) > 1 else "default query"
 
-# Load documents
+# Load documents from ./data directory
 loader = DirectoryLoader('./data', glob="**/*.txt", loader_cls=TextLoader)
 documents = loader.load()
 
-# Create embeddings and vectorstore
-embeddings = OpenAIEmbeddings()
-vectorstore = FAISS.from_documents(documents, embeddings)
+# Concatenate document contents as context
+context = "\n".join([doc.page_content for doc in documents])
 
-# Create RetrievalQA chain
-qa_chain = RetrievalQA.from_chain_type(
-    llm=OpenAI(),
-    chain_type="stuff",
-    retriever=vectorstore.as_retriever()
-)
-
-# Query the index
-result = qa_chain.run(query)
+# Run the query with context using Bytez model
+# Bytez expects a list of messages
+messages = [
+    {"role": "system", "content": "You are a helpful assistant. Answer based on the provided context."},
+    {"role": "user", "content": f"Query: {query}\n\nContext: {context}\n\nAnswer the query based on the context."}
+]
+result = model.run(messages)
 print(result)
