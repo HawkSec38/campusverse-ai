@@ -1,15 +1,9 @@
 import os
 import sys
 import constant
-from langchain_community.document_loaders import DirectoryLoader, TextLoader
-from langchain.indexes import VectorstoreIndexCreator
-from langchain_community.llms import OpenAI
-from langchain_openai import OpenAIEmbeddings
-from langchain_community.chat_models import ChatOpenAI
-import time
-from langchain_community.vectorstores import Chroma
-from openai import RateLimitError
-os.environ["OPENAI_API_KEY"] = constant.APIKEY
+from bytez import Bytez
+import openai as sdk
+os.environ["APIKEY"] = constant.APIKEY
 
 query = sys.argv[1]
 
